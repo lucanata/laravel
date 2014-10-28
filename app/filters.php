@@ -37,12 +37,15 @@ Route::filter('auth', function()
 {
 	if (Auth::guest())
 	{
+		## The user is not logged in
 		if (Request::ajax())
 		{
 			return Response::make('Unauthorized', 401);
 		}
 		else
 		{
+			// Redirect the user to /login
+			// Also storing the current URL in the session
 			return Redirect::guest('login');
 		}
 	}
@@ -67,9 +70,11 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) 
+	if (Auth::check()){ 
+		## The user is logged in
 		return Redirect::route('index')
 			->with('flash_notice', 'You are already logged in!');
+		}
 });
 
 /*

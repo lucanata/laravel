@@ -11,10 +11,13 @@
 |
 */
 
+## If not auth redirect to login
 Route::get('/', array('uses' => 'HomeController@showHome'))->before('auth');
 
+## If already logged redirect to home
 Route::get('login', array('uses' => 'HomeController@showLogin'))->before('guest');
 
+## Catching the user data submitted by the login form
 Route::post('login', array('uses' => 'HomeController@doLogin'));
 
 ?>
