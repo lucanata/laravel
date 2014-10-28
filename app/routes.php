@@ -11,26 +11,10 @@
 |
 */
 
-Route::get('/', array('as' => 'home', function()
-{
-	return View::make('hello');
-}))->before('auth');
+Route::get('/', array('uses' => 'HomeController@showHome'))->before('auth');
 
-Route::get('login', array('as' => 'login', function () {}));
+Route::get('login', array('uses' => 'HomeController@showLogin'))->before('guest');
 
-Route::post('login', function () {
-	$user = array(
-		'username' => Input::get('username'),
-		'password' => Input::get('password')
-	);
+Route::post('login', array('uses' => 'HomeController@doLogin'));
 
-	if (Auth::attempt($user)) {
-			return Redirect::route('home')
-				->with('flash_notice', 'You are succesfully logged in.');
-	}
-
-	return Redirect::route('login')
-		->with('flash_error', 'Your username/password combination was incorrect.')
-		->withInput();
-
-});
+?>
