@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder {
 
 		## Seeding of the user table to insert the admin
 		$this->call('UserTableSeeder');
+		$this->call('RoleTableSeeder');
+		$this->call('RoleUserTableSeeder');
 
 		// $this->call('UserTableSeeder');
 	}
