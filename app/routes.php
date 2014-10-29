@@ -11,16 +11,31 @@
 |
 */
 
-## If not auth redirect to login
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showHome'))->before('auth');
-
-## If already logged redirect to home
-Route::get('login', array('as' => 'login', 'uses' => 'HomeController@showLogin'))->before('guest');
-
 ## Catching the user data submitted by the login form
 Route::post('login', array('uses' => 'HomeController@doLogin'));
 
-## If already guest redirect to home
-Route::get('logout', array('as' => 'logout', 'uses' => 'HomeController@doLogout'))->before('auth');
+
+## Routes for only logged users
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('logout', array('as' => 'logout', 'uses' => 'HomeController@doLogout'));
+
+	Route::get('/', array('as' => 'index', 'uses' => 'HomeController@showIndex'));
+
+	Route::get('index', array('as' => 'index', 'uses' => 'HomeController@showIndex'));
+});
+
+## Routes for only guest users
+Route::group(array('before' => 'guest'), function()
+{
+	Route::get('login', array('as' => 'login', 'uses' => 'HomeController@showLogin'));
+});
+
+## Routes for only admin
+Route::group(array('before' => 'admin'), function()
+{
+	Route::get('register', array('as' => 'register', 'uses' => 'UserController@showRegister'));
+});
+
 
 ?>

@@ -15,7 +15,7 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showHome()
+	public function showIndex()
 	{
 		return View::make('index');
 	}
@@ -33,7 +33,7 @@ class HomeController extends BaseController {
 		);
 
 		if (Auth::attempt($user)) {
-			return Redirect::intended('home')
+			return Redirect::intended('index')
 				->with('flash_notice', 'You are succesfully logged in.');
 		}
 		else{
