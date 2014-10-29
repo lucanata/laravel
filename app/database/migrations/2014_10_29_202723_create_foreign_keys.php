@@ -14,11 +14,11 @@ class CreateForeignKeys extends Migration {
 	{
 		Schema::table('role_user', function($t) {
 			$t->foreign('role_id')->references('id')->on('roles')
-				->onUpdate('cascade')
+				->onUpdate('cascade');
 		});
 		Schema::table('role_user', function($t) {
 			$t->foreign('user_id')->references('id')->on('users')
-				->onUpdate('cascade')
+				->onUpdate('cascade');
 		});
 	}
 
