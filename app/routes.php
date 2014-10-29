@@ -12,12 +12,15 @@
 */
 
 ## If not auth redirect to login
-Route::get('/', array('uses' => 'HomeController@showHome'))->before('auth');
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showHome'))->before('auth');
 
 ## If already logged redirect to home
-Route::get('login', array('uses' => 'HomeController@showLogin'))->before('guest');
+Route::get('login', array('as' => 'login', 'uses' => 'HomeController@showLogin'))->before('guest');
 
 ## Catching the user data submitted by the login form
 Route::post('login', array('uses' => 'HomeController@doLogin'));
+
+## If already guest redirect to home
+Route::get('logout', array('as' => 'logout', 'uses' => 'HomeController@doLogout'))->before('auth');
 
 ?>

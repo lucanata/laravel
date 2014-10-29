@@ -33,13 +33,22 @@ class HomeController extends BaseController {
 		);
 
 		if (Auth::attempt($user)) {
-			return Redirect::route('index')
+			return Redirect::intended('home')
 				->with('flash_notice', 'You are succesfully logged in.');
 		}
+		else{
+			return Redirect::route('login')
+				->with('flash_error', 'Your username/password combination was incorrect.')
+				->withInput();
+		}
+
+	}
+
+	public function doLogout()
+	{
+		Auth::logout();
 
 		return Redirect::route('login')
-			->with('flash_error', 'Your username/password combination was incorrect.')
-			->withInput();
-
-}
+			->with('flash_notice', 'You are successfully logged out.');
+	}
 }

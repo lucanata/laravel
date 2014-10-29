@@ -1,5 +1,7 @@
 @extends('layout')
 
+@include('partials.nav')
+
 @section('content')
 	@if (Session::has('flash_error'))
 		<div id="flash_error">{{ Session::get('flash_error') }}</div>
