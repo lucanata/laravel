@@ -73,7 +73,7 @@ Route::filter('guest', function()
 	if (Auth::check()){ 
 		## The user is logged in
 		return Redirect::route('index')
-			->with('flash_notice', 'You are already logged in!');
+			->with('flash_error', 'You are already logged in!');
 		}
 });
 
@@ -93,5 +93,21 @@ Route::filter('csrf', function()
 	if (Session::token() != Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
+
+/*
+|--------------------------------------------------------------------------
+| Check if the currest user is an admin
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::filter('admin', function()
+{
+	if(! Entrust::hasRole('admin') )
+	{
+		return Redirect::route('index')
+			->with('flash_error', 'You must be an admin to do this.');
 	}
 });

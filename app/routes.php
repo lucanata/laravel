@@ -11,10 +11,6 @@
 |
 */
 
-## Catching the user data submitted by the login form
-Route::post('login', array('uses' => 'HomeController@doLogin'));
-
-
 ## Routes for only logged users
 Route::group(array('before' => 'auth'), function()
 {
@@ -23,12 +19,16 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/', array('as' => 'index', 'uses' => 'HomeController@showIndex'));
 
 	Route::get('index', array('as' => 'index', 'uses' => 'HomeController@showIndex'));
+
 });
 
 ## Routes for only guest users
 Route::group(array('before' => 'guest'), function()
 {
 	Route::get('login', array('as' => 'login', 'uses' => 'HomeController@showLogin'));
+
+	## Catching the user data submitted by the login form
+	Route::post('login', array('uses' => 'HomeController@doLogin'));
 });
 
 ## Routes for only admin

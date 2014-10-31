@@ -11,10 +11,8 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		## Seeding of the user table to insert the admin
-		$this->call('UserTableSeeder');
-
-		// $this->call('UserTableSeeder');
+		# Seeding of the user table to insert the admin
+		$this->call('UserSeeder');
 	}
 
 }
