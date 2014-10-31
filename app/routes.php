@@ -35,6 +35,8 @@ Route::group(array('before' => 'guest'), function()
 Route::group(array('before' => 'admin'), function()
 {
 	Route::get('register', array('as' => 'register', 'uses' => 'UserController@showRegister'));
+
+	Route::post('register', array('uses' => 'UserController@doRegistration'));
 });
 
 

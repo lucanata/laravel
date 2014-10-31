@@ -21,6 +21,10 @@ class UserSeeder extends Seeder
 		$admin->save();
 
 		$user->attachRole($admin);
+
+		$userrole = new Role;
+		$userrole->name 		=	'user';
+		$userrole->save();
 	}
 }
 

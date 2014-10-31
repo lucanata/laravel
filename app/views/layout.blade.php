@@ -33,42 +33,49 @@
 </head>
 
 <body>
-    @if (Session::has('flash_notice'))
-        <div id="flash_error">
-            <div class="alert alert-success alert-dismissable">
-                <center>
-                    {{ Session::get('flash_notice') }}
-                </center>
+    <div id="wrapper">
+        @if (Session::has('flash_notice'))
+            <div id="flash_error">
+                <div class="alert alert-success">
+                    <center>
+                        {{ Session::get('flash_notice') }}
+                    </center>
+                </div>
             </div>
-        </div>
-    @endif
-
-    @if (Session::has('flash_error'))
-        <div id="flash_error">
-            <div class="alert alert-danger alert-dismissable">
-                <center>
-                    {{ Session::get('flash_error') }}
-                </center>
+        @endif
+        @if (Session::has('flash_error'))
+            <div id="flash_error">
+                <div class="alert alert-danger">
+                    <center>
+                        {{ Session::get('flash_error') }}
+                    </center>
+                </div>
             </div>
+        @endif
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            @include('partials.nav-header')
+
+            @include('partials.nav-sidebar')
+        </nav>
+        <!-- Page content -->
+	    <div id="page-wrapper">
+            @yield('content')
         </div>
-    @endif
 
-	@yield('content')
+	    <!-- jQuery Version 1.11.0 -->
+        <script src="js/jquery-1.11.0.js"></script>
 
-	<!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="js/sb-admin-2.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="js/sb-admin-2.js"></script>
-
+    </div>
 </body>
 
 </html>
-
-
