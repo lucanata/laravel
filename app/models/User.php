@@ -24,6 +24,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	# The database table used by the model.
 	protected $table = 'users';
 
+	# The field that can be assigned with mass-assignment.
+	protected $fillable = ['name', 'surname', 'email', 'password', 'username'];
+
 	# The attributes excluded from the model's JSON form.
 	protected $hidden = array('password', 'remember_token');
 

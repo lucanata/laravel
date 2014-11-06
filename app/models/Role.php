@@ -7,7 +7,7 @@
 		protected $tabel = 'roles';
 
 		# The field that can be assigned with mass-assignment.
-		protected $fillable = [];
+		protected $fillable = ['name'];
 	}
 
 ?>
